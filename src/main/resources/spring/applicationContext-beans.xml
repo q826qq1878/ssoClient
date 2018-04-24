@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop   
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd   
+        http://www.springframework.org/schema/beans   
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd   
+        http://www.springframework.org/schema/context   
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd   
+        http://www.springframework.org/schema/mvc   
+        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd   
+        http://www.springframework.org/schema/tx   
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<!-- 
+		注解探测器(当在service的实现类上加@service时用):此配置项不但启用了对类包进
+		行扫描以实施注释驱动Bean定义的功能,同时还启用了注释驱动自动注入的功能
+	-->
+	<context:component-scan base-package="com.jjc.ssoClient.service" />
+	<context:component-scan base-package="com.jjc.ssoClient.dao" />
+
+	<!-- 基于Cookie的本地化解析器 -->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+	 	<property name="cookieMaxAge" value="604800"/>
+	 	<property name="defaultLocale" value="zh_CN"/>
+	 	<property name="cookieName" value="Language"></property>
+	</bean>
+
+	<!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8" />
+		<!-- 指定所上传文件的总大小不能超过10485760000B。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
+		<property name="maxUploadSize" value="10485760000" />
+		<property name="maxInMemorySize" value="40960" />
+	</bean>
+	
+
+
+	<bean class="com.jjc.ssoClient.web.util.WebApplicationContextHelper" lazy-init="true"/>
+
+	<bean id="taskExecutor"
+		  class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor" lazy-init="true">
+		<property name="corePoolSize" value="4" />   <!-- 并发线程数,想达到真正的并发效果,最好对应CPU的线程数及核心数 -->
+		<property name="maxPoolSize" value="10" />   <!-- 最大线程池容量 -->
+		<property name="queueCapacity" value="10000" />  <!-- 超过最大线程池容量后,允许的线程队列数 -->
+	</bean>
+
+
+
+</beans>

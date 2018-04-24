@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 数据库驱动包位置 -->
+    <classPathEntry location="mysql-connector-java-5.1.34.jar" />
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <!-- 数据库链接URL、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://10.158.41.132/yunxinsso"
+                        userId=""
+                        password="">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- 生成模型的包名和位置 -->
+        <javaModelGenerator targetPackage="com.yunxin.po.prodb" targetProject="../src">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!-- 生成的映射文件包名和位置 -->
+        <sqlMapGenerator targetPackage="com.yunxin.iambuyer.dao.prodb.mapper" targetProject="../src">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yunxin.iambuyer.dao.prodb" targetProject="../src">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+<!--     <table tableName="AREA" domainObjectName="Area"  -->
+<!--     enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/> -->
+<!--     <table tableName="CITY" domainObjectName="City"  -->
+<!--     enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/> -->
+<!--     <table tableName="COMP_APPLY_INFO" domainObjectName="CompApplyInfo"  -->
+<!--     enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/> -->
+<!--     <table tableName="COMP_SHOP_INFO" domainObjectName="CompShopInfo"  -->
+<!--     enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/> -->
+<!--     <table tableName="MANAGE_USER" domainObjectName="ManageUser"  -->
+<!--     enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/> -->
+<!--     <table tableName="MODULE_PRIVILEGE" domainObjectName="ModulePrivilege"  -->
+<!--     enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/> -->
+<!--     <table tableName="PRIVILEGE" domainObjectName="Privilege"  -->
+<!--     enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/> -->
+<!--     <table tableName="PROVINCE" domainObjectName="Province"  -->
+<!--     enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/> -->
+<!--     <table tableName="ROLE" domainObjectName="Role"  -->
+<!--     enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/> -->
+<!--     <table tableName="ROLE_PRIVILEGE" domainObjectName="RolePrivilege"  -->
+<!--     enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/> -->
+<!--     <table tableName="SHOP_EVAL" domainObjectName="ShopEval"  -->
+<!--     enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/> -->
+<!--     <table tableName="SSO_USER" domainObjectName="SsoUser"  -->
+<!--     enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/> -->
+<!--     <table tableName="SYS_MODULE" domainObjectName="SysModule"  -->
+<!--     enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/> -->
+<!--     <table tableName="USER_ROLE" domainObjectName="UserRole"  -->
+<!--     enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/> -->
+<!--     <table tableName="PAY_PASSWORD" domainObjectName="PayPassword"  -->
+<!--     enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/> -->
+<!--     <table tableName="MOBILE_TICKET" domainObjectName="MobileTicket"  -->
+<!--     enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/> -->
+<!--     <table tableName="COMP_SETTLE_INFO" domainObjectName="CompSettleInfo"  -->
+<!--     enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/> -->
+<!--     <table tableName="comp_branch_bank" domainObjectName="CompBranchBank"  -->
+<!--     enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/> -->
+    <!--<table tableName="ruhexiu_apply" domainObjectName="RuhexiuApply" -->
+    <!--enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>-->
+
+<!--
+      <table tableName="img_permanent" domainObjectName="ImgPermanent"
+             enableCountByExample="true" enableUpdateByExample="false" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
+
+      <table tableName="img_temp" domainObjectName="ImgTemp"
+             enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="true"/>
+-->
+
+      <!--<table tableName="sys_message" domainObjectName="SysMessage"-->
+             <!--enableCountByExample="true" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="true"/>-->
+
+    <!--  <table tableName="SYS_CAROUSEL" domainObjectName="SysCarousel"
+      enableCountByExample="true" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="true"/>
+
+      <table tableName="SYS_INDEX_TAB" domainObjectName="SysIndexTab"
+             enableCountByExample="true" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="true"/>
+
+      <table tableName="SYS_INDEX_SUPPLYTYPE" domainObjectName="SysIndexSupplytype"
+             enableCountByExample="true" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="true"/>
+
+      <table tableName="SYS_INDEX_COMP" domainObjectName="SysIndexComp"
+             enableCountByExample="true" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="true"/>
+
+      <table tableName="SYS_INDEX_BUYTYPE" domainObjectName="SysIndexBuytype"
+             enableCountByExample="true" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="true"/>
+
+-->
+
+      <!--<table tableName="SYS_GROUP" domainObjectName="SysGroup"
+             enableCountByExample="true" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="true"/>-->
+<!--
+
+      <table tableName="kor_core_user" domainObjectName="KorCoreUser"
+             enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+      <table tableName="kor_st_product" domainObjectName="KorStProduct"
+             enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+      <table tableName="kor_st_product_korea" domainObjectName="KorStProductKorea"
+             enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+      <table tableName="kor_st_product_offer" domainObjectName="KorStProductOffer"
+             enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+      <table tableName="kor_st_product_offer_korea" domainObjectName="KorStProductOfferKorea"
+             enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+      <table tableName="kor_sys_ticket" domainObjectName="KorSysTicket"
+             enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+-->
+        <!--<table tableName="kor_st_offer_msg" domainObjectName="KorStOfferMsg"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>-->
+
+        <!--<table tableName="KOR_ST_PRODUCT_OFFER_B2B" domainObjectName="KorStProductOfferB2b"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+        <table tableName="KOR_ST_PRODUCT_PARA" domainObjectName="KorStProductPara"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+        <table tableName="KOR_ST_MSG" domainObjectName="KorStMsg"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+        <table tableName="KOR_SYS_PROVINCE" domainObjectName="KorSysProvince"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+        <table tableName="KOR_SYS_CITY" domainObjectName="KorSysCity"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+-->
+
+
+        <!--<table tableName="KOR_SYS_EXCEL" domainObjectName="KorSysExcel"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>-->
+
+       <!-- <table tableName="kor_st_product" domainObjectName="KorStProduct"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+        <table tableName="kor_st_product_korea" domainObjectName="KorStProductKorea"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+        <table tableName="kor_st_product_offer" domainObjectName="KorStProductOffer"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+        <table tableName="kor_st_product_offer_korea" domainObjectName="KorStProductOfferKorea"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+-->
+
+        <!--<table tableName="ST_PRODUCT_ORDER" domainObjectName="StProductOrder"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+        <table tableName="ST_PRODUCT_ORDER_CONTENT" domainObjectName="StProductOrder"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+        <table tableName="ST_PRODUCT_ORDER_ACCOUNT" domainObjectName="StProductOrderAccount"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+
+        <table tableName="ST_PRODUCT_ORDER_EXPRESS" domainObjectName="StProductOrderExpress"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+
+        <table tableName="ST_PRODUCT_SHARE" domainObjectName="StProductShare"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+
+        <table tableName="ST_PRODUCT_INQUIRY" domainObjectName="StProductInquiry"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+
+        <table tableName="MY_FOLLOW_USER" domainObjectName="MyFollowUser"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+
+        <table tableName="KOR_SYS_CATEGORY" domainObjectName="KorSysCategory"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+
+        <table tableName="SYS_EXPRESS" domainObjectName="SysExpress"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+-->
+
+<!--
+
+        <table tableName="st_product_order_content" domainObjectName="StProductOrderContent"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+-->
+
+
+        <table tableName="ssoclienttesttable" domainObjectName="SsoClientTestTable"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+
+
+  </context>
+  <!-- java -jar mybatis-generator-core-1.3.5.jar -configfile ../src/financedb.xml -overwrite  -->
+</generatorConfiguration>

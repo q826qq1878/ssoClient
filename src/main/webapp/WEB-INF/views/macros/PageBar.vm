@@ -1,0 +1,77 @@
+##
+## $Id$
+## 
+##	PageBarII 翻页栏（可以放到网页任意位置）
+##	但必须：
+##	1、传入$formname指定Form名称。
+##	2、将以下三个隐藏字段复制到指定的Form表单里面。
+## 	<input type="hidden" name="actionType" value="0" id ="actionType">
+## 	<input type="hidden" name="page" value="$!pageBean.page" id ="page">
+## 	<input type="hidden" name="pageSize" value="$!pageBean.getPageSize()" id ="pageSize">
+##   
+#macro(PageBarII1 $formname)
+	#PageBarII($formname 1)
+#end
+#macro(PageBarII $formname $type)
+<script language="JavaScript">
+function isDigit(NUM) { 
+	var i,j,strTemp; 
+	strTemp="0123456789"; 
+	if (NUM.length==0){
+		return false ;
+	} 
+	for (i=0;i<NUM.length;i++){ 
+		j=strTemp.indexOf(NUM.charAt(i)); 
+		if (j==-1){ 
+			return false; 
+		} 
+	} 
+	return true; 
+}
+function TurnPage(PageNum){	
+	var frm=document.forms["$!{formname}"];
+	if (PageNum=="TP"){
+		PageNum = frm.topage.value;
+	} 
+	if(!isDigit(PageNum)){
+		alert("#springMessage('Please_enter_a_legitimate_page_number')！");
+	}	
+  	else{
+		document.getElementById("page").value = PageNum;
+		frm.submit();
+	}
+}
+</script>
+<div style="text-align:center;">
+	<div class="pageJump" style="display: inline-block;padding-left: 0;margin: 20px 10px;border-radius: 4px;vertical-align: top;">
+		<span style="line-height:34px;">#springMessage('common')</span>
+		<span>$!pageBean.count</span>
+		<span>#springMessage('information')，</span>
+		<span>$!pageBean.pages</span><span>#springMessage('zj_page')，</span>
+	</div>
+    <ul class="pagination" style="display: inline-block;padding-left: 0;margin: 20px 0;border-radius: 4px;">
+        <li style=" display: inline;"><a style="position: relative;float: left;padding: 7px 12px; margin-left: -1px;line-height: 1.42857143;color: #02c2a2;text-decoration: none;background-color: #fff;border: 1px solid #ddd;cursor: pointer;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;margin-left: 0;border-top-left-radius: 4px;border-bottom-left-radius: 4px;" onclick="TurnPage($pageBean.prePageNo)"><</a></li>
+			#set($begin = 1) 
+			#if($!pageBean.page > 2)
+			 #set($begin = $!pageBean.page - 2) 
+			 #end 
+			 #set($last = $begin + 4) #if($last > $!pageBean.pages) 
+			 #set($last = $!pageBean.pages) 
+			 #end 
+			  #foreach($index in [$begin..$last])
+					 	 #if($index==$!pageBean.page) 
+						
+						  <li style=" display: inline;"><a style="position: relative;float: left;padding: 7px 12px; margin-left: -1px;line-height: 1.42857143;color: #02c2a2;text-decoration: none;background-color: #fff;border: 1px solid #ddd;cursor: pointer;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;">$index</a></li>
+						 #else <li style=" display: inline;"><a style="position: relative;float: left;padding: 7px 12px; margin-left: -1px;line-height: 1.42857143;color: #02c2a2;text-decoration: none;background-color: #fff;border: 1px solid #ddd;cursor: pointer;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;" href="javascript:TurnPage ($index)">$index</a></li>
+						 #end 
+				#end
+        <li style=" display: inline;"><a style="margin-left: 0;border-top-right-radius: 4px;border-bottom-right-radius: 4px;position: relative;float: left;padding: 7px 12px; margin-left: -1px;line-height: 1.42857143;color: #02c2a2;text-decoration: none;background-color: #fff;border: 1px solid #ddd;cursor: pointer;-webkit-touch-callout: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;" onclick="TurnPage($pageBean.nextPageNo)">></a></li>
+    </ul>
+    <div class="pageJump" style="display: inline-block;padding-left: 0;margin: 20px 10px;border-radius: 4px;vertical-align: top;">
+        <span>#springMessage('Jump_To')</span>
+        <input name="topage" value="$!pageBean.page" type="text" style="width: 40px;font-size: 16px;padding: 6px 12px;margin-left: -1px;line-height: 1.42857143;color: #02c2a2;text-decoration: none;background-color: #fff;border: 1px solid #ddd;">
+        <span>#springMessage('zj_page')</span>
+        <button type="button" class="button" onclick="TurnPage('TP')" style="font-size: 16px;padding: 6px 12px;margin-left: -1px;line-height: 1.42857143;color: #02c2a2;text-decoration: none;background-color: #02c2a2;border: 1px solid #ddd;color:#fff;border-radius:5px;">#springMessage('Determine')</button>
+    </div>
+</div>
+#end

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop   
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd   
+        http://www.springframework.org/schema/beans   
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd   
+        http://www.springframework.org/schema/context   
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd   
+        http://www.springframework.org/schema/mvc   
+        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd   
+        http://www.springframework.org/schema/tx   
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        http://www.springframework.org/schema/task 
+        http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+
+	
+	<!-- 启用MVC注解 -->
+	<!--<mvc:annotation-driven />-->
+	<!-- 加入定时器的配置 -->
+	<task:annotation-driven scheduler="qbScheduler" mode="proxy" />
+	<task:scheduler id="qbScheduler" pool-size="10"/>
+
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="com.jjc.ssoClient.converter.DefaultJacksonHttpMessageConverter">
+				<property name="prettyPrint" value="true"/>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	<mvc:interceptors>
+		<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="lang"/>
+		</bean>
+	</mvc:interceptors>
+
+
+	<bean id="jacksonHttpMessageConverter" class="com.jjc.ssoClient.converter.DefaultJacksonHttpMessageConverter">
+		<property name="prettyPrint" value="true"/>
+	</bean>
+
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="order" value="1"/>
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json"/>
+			</map>
+		</property>
+		<property name="defaultContentType" value="#{T(org.springframework.http.MediaType).APPLICATION_JSON}"/>
+		<property name="defaultViews">
+			<list>
+				<bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView"/>
+			</list>
+		</property>
+	</bean>
+
+
+
+	<!-- 默认首页 -->
+	<mvc:view-controller path="/" view-name="internal/welcome" />
+	
+	<!-- 指定Sping组件扫描的基本包路径 -->
+	<context:component-scan base-package="com.jjc.ssoClient">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>	
+
+	<mvc:default-servlet-handler />
+	
+	<!-- 配置国际化资源文件路径 -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename">
+			<value>messages/message</value>
+		</property>
+	</bean>
+
+	<!--国际化拦截器-->
+	<mvc:interceptors>
+	<mvc:interceptor>
+	<mvc:mapping path="/**/**"/>
+		<bean class="com.jjc.ssoClient.filter.LanguageFilter"></bean>
+	</mvc:interceptor>
+
+
+	</mvc:interceptors>
+
+	
+
+	<!-- 静态资源映射目录 -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<!-- 加载Velocity属性文件和资源路径. -->
+	<bean id="velocityConfig"
+		  class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath" value="/WEB-INF/views/" />
+		<property name="configLocation" value="classpath:velocity/velocity.properties" />
+	</bean>
+
+	<!-- Velocity视图解析器 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+		<property name="prefix" value="" />
+		<property name="suffix" value=".html" />
+		<!-- Whether we should cache views, once resolved -->
+		<property name="cache" value="false" /><!--是否缓存模板-->
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		<property name="viewClass"
+				  value="org.springframework.web.servlet.view.velocity.VelocityLayoutView" />
+		<!-- 默认Layout -->
+		<property name="layoutUrl" value="/layout/NoLayout.html" />
+		<property name="layoutKey" value="layout" />
+		<!-- 视图动态布局引用Key值 -->
+		<property name="screenContentKey" value="screen_content" />
+		<!-- 暴露Spring本身的宏 -->
+		<property name="exposeSpringMacroHelpers" value="true" />
+		<property name="exposeRequestAttributes" value="true" /><!--是否开放request属性-->
+		<property name="requestContextAttribute" value="rc"/><!--request属性引用名称-->
+		<!-- 格式化日期 :$dateTool.format("yyyy-MM-dd HH:mm:ss",$!{})  -->
+		<property name="dateToolAttribute" value="dateTool" />
+		<!-- 格式化数字 :  -->
+		<property name="numberToolAttribute" value="numberTool" />
+	</bean>
+</beans>
